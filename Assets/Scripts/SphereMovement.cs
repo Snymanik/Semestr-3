@@ -1,39 +1,74 @@
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+// ask about gravity and the rotation of the camera
 public class SphereMovement : MonoBehaviour
 {
-    const float speed = 4.8f;
-    private Rigidbody Rigidbody;
-    private CharacterController charactercontroller;
-   
-    private void Start()
+    [SerializeField]
+     float speed = 20f;
+
+    
+    
+    public Rigidbody Rigidbody;
+    Vector3 direction;
+
+    
+
+    // Use this for initialization
+    void Start()
     {
+        
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Rigidbody = GetComponent<Rigidbody>();
-        
+       
+
     }
+
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.W)) 
+        
+        if (UnityEngine.Input.GetKey(KeyCode.W))
         {
-            transform.position += new Vector3(0,0, 10) * speed * Time.deltaTime;
+             direction = new Vector3(0, 0, 1);
+           
         }
-        if (Input.GetKey(KeyCode.A))
+        else if (UnityEngine.Input.GetKey(KeyCode.A))
         {
-            transform.position += new Vector3(10, 0, 0) * speed * Time.deltaTime;
+             direction = new Vector3(-1, 0, 0);
+            
         }
-        if (Input.GetKey(KeyCode.D))
+        else if (UnityEngine.Input.GetKey(KeyCode.D))
         {
-            transform.position += new Vector3(-10, 0, 0) * speed * Time.deltaTime;
+             direction = new Vector3(1, 0, 0);
         }
-        if (Input.GetKey(KeyCode.S))
+        else if (UnityEngine.Input.GetKey(KeyCode.S))
         {
-            transform.position += new Vector3(0, 0, -10) * speed *Time.deltaTime;
+             direction = new Vector3(0, 0, -1);
+
+        }
+        else
+        {
+            direction = Vector3.zero;
         }
         
+
+        moveCharacter(direction);
+       
     }
+
+
+    
+    void moveCharacter(Vector3 direction)
+    {
+       
+        Rigidbody.velocity = direction * speed;
+        
+
+
+    }
+
 }
