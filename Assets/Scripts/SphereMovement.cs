@@ -31,21 +31,21 @@ public class SphereMovement : MonoBehaviour
     void Update()
     {
         
-        if (UnityEngine.Input.GetKey(KeyCode.W))
+        if (UnityEngine.Input.GetKey(KeyCode.UpArrow))
         {
              direction = new Vector3(0, 0, 1);
            
         }
-        else if (UnityEngine.Input.GetKey(KeyCode.A))
+        else if (UnityEngine.Input.GetKey(KeyCode.LeftArrow))
         {
              direction = new Vector3(-1, 0, 0);
             
         }
-        else if (UnityEngine.Input.GetKey(KeyCode.D))
+        else if (UnityEngine.Input.GetKey(KeyCode.RightArrow))
         {
              direction = new Vector3(1, 0, 0);
         }
-        else if (UnityEngine.Input.GetKey(KeyCode.S))
+        else if (UnityEngine.Input.GetKey(KeyCode.DownArrow))
         {
              direction = new Vector3(0, 0, -1);
 
@@ -55,20 +55,26 @@ public class SphereMovement : MonoBehaviour
             direction = Vector3.zero;
         }
         
-
+         //   rotation();
+        
+       
         moveCharacter(direction);
        
     }
 
+    /*private void rotation()
+    {
+        float rotate = Input.GetAxis("Mouse X");
+        //rotate = Mathf.Clamp(rotate, -50, 50);
+        transform.rotation = Quaternion.Euler(0, transform.rotation.y+ rotate, 0);
+    }*/
 
-    
     void moveCharacter(Vector3 direction)
     {
        
         Rigidbody.velocity = direction * speed;
         
-
-
     }
 
 }
+

@@ -6,23 +6,18 @@ using UnityEngine;
 
 public class WinGame : MonoBehaviour
 {
-   public  GameObject canvas;
-    public Rigidbody player;
-    private void Start()
-    {
-        canvas.SetActive(false);
-    }
-    private void OnTriggerEnter(Collider other)
+   
+   //public  GameObject canvas;
+    //public Rigidbody player;
+    
+    public void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "player")
         {
-            Wingame();
+            GameManager.gameManager.Bruv(true) ;
         }
     }
+    
 
-    private void Wingame()
-    {
-        canvas.SetActive(true);
-        player.constraints = RigidbodyConstraints.FreezeAll;
-    }
+    
 }
